@@ -7,6 +7,7 @@ import { createAuth } from '@keystone-next/auth';
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
+import { CartItem } from './schemas/CartItem';
 import 'dotenv/config';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
@@ -58,11 +59,12 @@ export default withAuth(
       User,
       Product,
       ProductImage,
+      CartItem,
     }),
     ui: {
       // TODO: change this for notes
       isAccessAllowed: ({ session }) => {
-        console.log(session);
+        console.log('session', session);
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return !!session?.data;
       },
